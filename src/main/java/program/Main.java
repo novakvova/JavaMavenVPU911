@@ -1,5 +1,12 @@
 package program;
 
+import entities.Author;
+import entities.Book;
+import entities.Role;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import utils.DbContextZibert;
+
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,14 +20,53 @@ import java.util.Scanner;
 public class Main {
     static Scanner in = new Scanner(System.in);
     public static void main(String[] args) {
-        String strConn = "jdbc:mariadb://localhost:3308/vpu911java";
-        //InsertIntoDB(strConn);
-        List<Product> list = SelectFromDB(strConn);
-        PrintProductList(list);
-        //UpdateForDB(strConn);
-        DeleteFromDB(strConn);
-        list = SelectFromDB(strConn);
-        PrintProductList(list);
+        Scanner in = new Scanner(System.in);
+        Session context = DbContextZibert.getSessionFactory().openSession();
+//        System.out.println("Connection is good!");
+
+//        System.out.println("Назва ролі:");
+//        String name = in.nextLine();
+//        Role role = new Role();
+//        role.setName(name);
+//        context.save(role);
+
+//        Query query = context.createQuery("FROM Role");
+//        List<Role> roles = query.list();
+//        for (Role role : roles)
+//            System.out.println(role);
+//
+
+//        System.out.println("Назва автора:");
+//        String name = in.nextLine();
+//        Author author = new Author();
+//        author.setFullName(name);
+//        context.save(author);
+//        System.out.println("Author id = "+ author.getId());
+
+        System.out.println("Назва книжки:");
+        String name = in.nextLine();
+        System.out.println("Автор id:");
+        int author_id = Integer.parseInt(in.nextLine());
+        Book book = new Book();
+        book.setName(name);
+        Author author = new Author();
+        author.setId(author_id);
+        book.setAuthor(author);
+        context.save(book);
+        System.out.println("Book id = "+ book.getId());
+
+        context.close();
+
+
+
+//        String strConn = "jdbc:mariadb://localhost:3308/vpu911java";
+//        //InsertIntoDB(strConn);
+//        List<Product> list = SelectFromDB(strConn);
+//        PrintProductList(list);
+//        //UpdateForDB(strConn);
+//        DeleteFromDB(strConn);
+//        list = SelectFromDB(strConn);
+//        PrintProductList(list);
 
     }
 
