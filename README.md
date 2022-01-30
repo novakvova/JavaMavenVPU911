@@ -12,7 +12,7 @@ mvn compile
 
 mvn package
 
-java -jar target\tire.jar --server.port=8085
+java -jar target/tire.jar --server.port=8085
 
 mvn clean package
 
