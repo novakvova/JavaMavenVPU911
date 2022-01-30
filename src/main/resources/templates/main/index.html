@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Шиномонтаж</title>
+</head>
+<body>
+    <h1>Шиномонтаж для всіх!</h1>
+    <table>
+        <thread>
+            <tr>
+                <th>Id</th>
+                <ht>Name</ht>
+            </tr>
+        </thread>
+        <tbody>
+        <tr th:each="role : ${roles}">
+            <td th:text="${role.id}"></td>
+            <td th:text="${role.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <img src="/images/dog.jfif" alt="Собака">
+</body>
+</html>
