@@ -4,7 +4,7 @@
 
 mvn dependency:tree
 
-mvn spring-boot:run``
+mvn spring-boot:run
 
 http://localhost:8085/
 
