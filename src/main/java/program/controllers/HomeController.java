@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import program.dto.admin.UploadImageDto;
 import program.dto.admin.authordto.AuthorAddDto;
 import program.dto.admin.roledto.RoleAddDto;
 import program.entities.Role;
@@ -19,7 +20,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class HomeController {
     private final RoleRepository roleRepository;
@@ -29,6 +30,12 @@ public class HomeController {
     public String index(Model model) {
         model.addAttribute("roles", roleRepository.findAll());
         return "main/index";
+    }
+
+    @PostMapping("/upload")
+    public String upload(@RequestBody UploadImageDto dto) {
+        String image = storageService.store(dto.getBase64());
+        return image;
     }
 
     @GetMapping("/files/{filename:.+}")
